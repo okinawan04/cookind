@@ -15,10 +15,7 @@ test:
   <<: *default
   database: app_test
 
-# Heroku 本番用（Postgres を DATABASE_URL で使う）
+# Heroku 本番用 (Postgres を DATABASE_URL で使う)
 production:
-  adapter: postgresql
-  encoding: unicode
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   url: <%= ENV['DATABASE_URL'] %>
-
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
