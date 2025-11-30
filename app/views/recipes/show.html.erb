@@ -2,9 +2,20 @@
 
 <%= render @recipe %>
 
+<p>
+  <strong>紐づいている在庫:</strong>
+</p>
+<ul>
+  <% @recipe.stocks.each do |stock| %>
+    <li><%= stock.name %> (ID: <%= stock.id %>)</li>
+  <% end %>
+</ul>
+
 <div>
   <%= link_to "Edit this recipe", edit_recipe_path(@recipe) %> |
   <%= link_to "Back to recipes", recipes_path %>
+</div>
 
+<div>
   <%= button_to "Destroy this recipe", @recipe, method: :delete %>
 </div>

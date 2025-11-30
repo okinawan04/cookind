@@ -22,9 +22,21 @@ class RecipesController < ApplicationController
   # POST /recipes or /recipes.json
   def create
     @recipe = Recipe.new(recipe_params)
+    stock_ids = params[:recipe][:stock_id].split(",").map(&:to_i)
 
     respond_to do |format|
       if @recipe.save
+
+        # 在庫IDが入っていたら中間テーブル作成
+        if stock_ids.present?
+          stock_ids.each do |stock_id|
+            RecipeStock.create!(
+              recipe_id: @recipe.id,
+              stock_id: stock_id
+            )
+          end
+        end
+
         format.html { redirect_to @recipe, notice: "Recipe was successfully created." }
         format.json { render :show, status: :created, location: @recipe }
       else
@@ -33,6 +45,7 @@ class RecipesController < ApplicationController
       end
     end
   end
+
 
   # PATCH/PUT /recipes/1 or /recipes/1.json
   def update
@@ -65,6 +78,8 @@ class RecipesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def recipe_params
-      params.require(:recipe).permit(:name)
+      params.require(:recipe).permit(:name, :description, :stock_id)
     end
 end
+
+
