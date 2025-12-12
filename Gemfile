@@ -45,9 +45,7 @@ group :development, :test do
   gem "rubocop-rails-omakase", require: false
 end
 
-group :development do
-  # Use console on exceptions pages [https://github.com/rails/web-console]
-  gem "web-console"
+group :development, :test do
 end
 
 group :test do
@@ -56,6 +54,4 @@ group :test do
   gem "selenium-webdriver"
 end
 
-group :production do
-  gem "pg", "~> 1.5"
-end
+gem "pg", "~> 1.5"

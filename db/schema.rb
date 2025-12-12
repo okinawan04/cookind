@@ -11,7 +11,10 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.2].define(version: 2025_11_29_163457) do
-  create_table "recipe_stocks", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "recipe_stocks", force: :cascade do |t|
     t.bigint "recipe_id", null: false
     t.bigint "stock_id", null: false
     t.datetime "created_at", null: false
@@ -20,13 +23,13 @@ ActiveRecord::Schema[7.2].define(version: 2025_11_29_163457) do
     t.index ["stock_id"], name: "index_recipe_stocks_on_stock_id"
   end
 
-  create_table "recipes", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "recipes", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "stocks", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "stocks", force: :cascade do |t|
     t.string "name"
     t.integer "quantity"
     t.integer "amount"
