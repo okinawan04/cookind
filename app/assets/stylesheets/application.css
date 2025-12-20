@@ -13,3 +13,36 @@
  *= require_tree .
  *= require_self
  */
+.recipe-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.recipe-card {
+  border: 1px solid #ddd;
+  padding: 16px;
+  border-radius: 6px;
+  background: #fafafa;
+}
+
+.recipe-links {
+  margin-top: 8px;
+}
+
+.btn {
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: #007bff;
+  color: white;
+}
+
+.btn-outline {
+  border: 1px solid #007bff;
+  color: #007bff;
+}

@@ -1,16 +1,40 @@
-<p style="color: green"><%= notice %></p>
-
 <% content_for :title, "Recipes" %>
 
-<h1>Recipes</h1>
+<div class="page-header">
+  <h1>🍳 Recipes</h1>
+  <p class="description">登録されているレシピ一覧です。</p>
+</div>
 
-<div id="recipes">
-  <% @recipes.each do |recipe| %>
-    <%= render recipe %>
-    <p>
-      <%= link_to "Show this recipe", recipe %>
-    </p>
+<p style="color: green"><%= notice %></p>
+
+<div class="actions">
+  <%= link_to "➕ 新しいレシピを追加する", new_recipe_path, class: "btn btn-primary" %>
+</div>
+
+<hr>
+
+<div id="recipes" class="recipe-list">
+  <% if @recipes.any? %>
+    <% @recipes.each do |recipe| %>
+      <div class="recipe-card">
+        <h3><%= recipe.title %></h3>
+
+        <p class="recipe-info">
+          <%= truncate(recipe.description, length: 60) %>
+        </p>
+
+        <div class="recipe-links">
+          <%= link_to "📄 詳細を見る", recipe, class: "btn btn-outline" %>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <p>レシピがありません。新しく登録してみましょう！</p>
   <% end %>
 </div>
 
-<%= link_to "New recipe", new_recipe_path %>
+<hr>
+
+<div class="footer-links">
+  <%= link_to "🏠 トップに戻る", root_path %>
+</div>
